@@ -1,0 +1,91 @@
+from tkinter import *
+
+root = Tk()
+root.title("Calculator")
+root.geometry("380x380")
+
+calc = ""
+
+x = Text(root, height=2, width=16, font=("Arial", 24))
+x.grid(columnspan=5)
+
+
+def add_to(symbol):
+    global calc
+    calc += str(symbol)
+    x.delete(1.0, "end")
+    x.insert(1.0, calc)
+
+
+def eval_calc():
+    global calc
+    try:
+        calc = str(eval(calc))
+        x.delete(1.0, "end")
+        x.insert(1.0, calc)
+    except:
+        clear()
+        x.insert(1.0, "Error")
+
+
+def clear():
+    global calc
+    calc = ""
+    x.delete(1.0, "end")
+
+
+button_1 = Button(root, text="1", command=lambda: add_to(1), width=5, font=("Arial", 20))
+button_1.grid(row=2, column=1)
+
+button_2 = Button(root, text="2", command=lambda: add_to(2), width=5, font=("Arial", 20))
+button_2.grid(row=2, column=2)
+
+button_3 = Button(root, text="3", command=lambda: add_to(3), width=5, font=("Arial", 20))
+button_3.grid(row=2, column=3)
+
+button_4 = Button(root, text="4", command=lambda: add_to(4), width=5, font=("Arial", 20))
+button_4.grid(row=3, column=1)
+
+button_5 = Button(root, text="5", command=lambda: add_to(5), width=5, font=("Arial", 20))
+button_5.grid(row=3, column=2)
+
+button_6 = Button(root, text="6", command=lambda: add_to(6), width=5, font=("Arial", 20))
+button_6.grid(row=3, column=3)
+
+button_7 = Button(root, text="7", command=lambda: add_to(7), width=5, font=("Arial", 20))
+button_7.grid(row=4, column=1)
+
+button_8 = Button(root, text="8", command=lambda: add_to(8), width=5, font=("Arial", 20))
+button_8.grid(row=4, column=2)
+
+button_9 = Button(root, text="9", command=lambda: add_to(9), width=5, font=("Arial", 20))
+button_9.grid(row=4, column=3)
+
+button_0 = Button(root, text="0", command=lambda: add_to(0), width=5, font=("Arial", 20))
+button_0.grid(row=5, column=2)
+
+button_plus = Button(root, text="+", command=lambda: add_to("+"), width=5, font=("Arial", 20))
+button_plus.grid(row=2, column=4)
+
+button_minus = Button(root, text="-", command=lambda: add_to("-"), width=5, font=("Arial", 20))
+button_minus.grid(row=3, column=4)
+
+button_mul = Button(root, text="*", command=lambda: add_to("*"), width=5, font=("Arial", 20))
+button_mul.grid(row=4, column=4)
+
+button_div = Button(root, text="/", command=lambda: add_to("/"), width=5, font=("Arial", 20))
+button_div.grid(row=5, column=4)
+
+button_open = Button(root, text="(", command=lambda: add_to("("), width=5, font=("Arial", 20))
+button_open.grid(row=5, column=1)
+
+button_close = Button(root, text=")", command=lambda: add_to(")"), width=5, font=("Arial", 20))
+button_close.grid(row=5, column=3)
+
+button_clr = Button(root, text="C", command=clear, width=11, font=("Arial", 20))
+button_clr.grid(row=6, column=1, columnspan=2)
+
+button_equ = Button(root, text="=", command=eval_calc, width=11, font=("Arial", 20))
+button_equ.grid(row=6, column=3, columnspan=2)
+
+root.mainloop()
